@@ -48,4 +48,62 @@ https://zhuanlan.zhihu.com/p/48157076
 3. getAndSet: cas 配合自旋设值
 
 - 具体类应用场景
-1. 
+1.  
+
+####  AQS 
+- ReentrantLock 
+
+- NonFairSyncr.lock 执行流程
+
+```
+    final void lock() {
+            //compare and set 当前锁对象的状态值. 
+            //如设置成功代表 占用成功, 设置独占线程为当前线程
+            if (compareAndSetState(0, 1))
+                setExclusiveOwnerThread(Thread.currentThread());
+            else
+            //执行 AQS 模板方法
+                acquire(1);
+        }
+```
+
+```
+    public final void acquire(int arg) {
+        //tryAcquire 子类获取同步资源(state 状态)
+        //没有获取成功 入队 (addWaiter) 
+        //并且轮询(死循环)获取锁状态,  acquireQueued
+        if (!tryAcquire(arg) &&
+            acquireQueued(addWaiter(Node.EXCLUSIVE), arg))
+            selfInterrupt();
+    }
+```
+
+```
+        final boolean acquireQueued(final Node node, int arg) {
+        boolean failed = true;
+        try {
+            boolean interrupted = false;
+            for (;;) {
+                final Node p = node.predecessor();
+                //如果 前置节点是头, 并且成功获取 锁状态(子类方法)
+                //则头部节点出队列 
+                if (p == head && tryAcquire(arg)) {
+                    setHead(node);
+                    p.next = null; // help GC
+                    failed = false;
+                    return interrupted;
+                }
+                //没有获得锁状态的话,检查是否需要park 
+                //根据node waitState 的状态判断是否等待
+                if (shouldParkAfterFailedAcquire(p, node) &&
+                    parkAndCheckInterrupt())
+                    interrupted = true;
+            }
+        } finally {
+            if (failed)
+                cancelAcquire(node);
+        }
+    }
+```
+
+
