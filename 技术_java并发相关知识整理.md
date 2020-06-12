@@ -49,3 +49,12 @@ https://zhuanlan.zhihu.com/p/48157076
 
 - 具体类应用场景
 1. 
+
+#### AQS 
+1. countDownLatch
+2. cycilcBarrier
+3. Semaphore 
+4. 阻塞队列
+5. lock (读写，可重入), condition （多个condition 控制)
+6. 线程池， 主要参数，底层原理， 拒绝策略
+7. 死锁定位 
