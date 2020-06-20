@@ -1,8 +1,10 @@
 > placeholder 
 
-### 使用
-1. model 需要 转化为 TemplateModel, 已有的TemplateModel: SimpleScalar(单个值的TemplateModel)..
-hashMap 会自动转化为 相应的TemplateModel 
+### 设计 
+1. TemplateModel: freemarker 的类型系统, 而ObjectWrapper 则是 java 对象和 freemarker model 映射的桥梁
+
+
+
 
 
 
