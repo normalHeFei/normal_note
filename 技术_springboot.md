@@ -26,7 +26,7 @@ String schema = System.getProperty("os.name").startsWith("Windows") ? "file:///"
 
 
 ### config
-- 几个注解的用法
+- 几个注解的用法 dgbank888
 
 1. @ConfigurationProperties: 定义配置类, 配置类会作为普通的java bean, 需要配合以下两个注解使用
 2. @EnableConfigurationProperties([YourProperties].class):  启用配置类, 有条件启用,配置自己的autoConfig
@@ -34,3 +34,11 @@ String schema = System.getProperty("os.name").startsWith("Windows") ? "file:///"
 
 
 java -jar   normal_portal-0.0.1-SNAPSHOT.jar  -Dlogging.config=file:D:\projects\normal_portal\src\main\resources\logback-spring.xml
+- 问题
+
+1. 启用auto config 后, 代码里如何自定义配置 ? 
+
+
+### bean 的生命周期
+
+1. 
