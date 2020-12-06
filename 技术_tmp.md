@@ -21,7 +21,7 @@ c2
 1. 统一适配外部引用中间件（openmessage,rocketmq,oss)
 2. 基于mq 的logger 
 3. 前端权限系统设计
-4. 
+4. 整体架构
 
 
 
