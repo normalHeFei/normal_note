@@ -76,6 +76,5 @@ environment.getProperty 最终会委托到 ConfigurableEnvironment.propertySourc
 
 ```
 
-### 代码热部署实现方案
-
+### 配置更新
 
